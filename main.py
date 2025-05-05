@@ -119,7 +119,7 @@ elif page == "Предсказание":
     if uploaded_file is not None:
         input_df = pd.read_csv(uploaded_file, sep=";")
         st.write("Загруженные данные:")
-        st.dataframe(input_df.head())
+        st.dataframe(input_df)
 
         processed = preprocess(input_df)
 
@@ -131,16 +131,14 @@ elif page == "Предсказание":
             labels = model.predict(processed)
 
         def interpret_label(label):
-            if label == 0:
-                return "Бомба не заложена"
-            elif label == 1:
-                return "Бомба заложена"
+            return "Бомба не заложена" if label == 0 else "Бомба заложена"
 
         interpreted = [interpret_label(label) for label in labels]
 
-        result_df = input_df.copy()
-        result_df["Предсказание"] = interpreted
-
         st.subheader("Результаты предсказания:")
-        st.dataframe(result_df)
-        st.download_button("Скачать предсказания в CSV", result_df.to_csv(index=False), file_name="predictions.csv")
+        for i, (label, text) in enumerate(zip(labels, interpreted)):
+            color = "red" if label == 0 else "green"
+            st.markdown(
+                f"<p style='color:{color}; font-size:18px;'>Запись {i+1}: {text}</p>",
+                unsafe_allow_html=True
+            )
