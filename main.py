@@ -9,8 +9,8 @@ from sklearn.preprocessing import StandardScaler
 
 with open('./models/gnb.pkl', 'rb') as f:
     gnb = pickle.load(f)
-# with open('./models/gbc.pkl', 'rb') as f:
-#     gbc = pickle.load(f)
+with open('./models/cbc.pkl', 'rb') as f:
+    cbc = pickle.load(f)
 with open('./models/bc.pkl', 'rb') as f:
     bc = pickle.load(f)
 with open('./models/sc.pkl', 'rb') as f:
@@ -23,7 +23,7 @@ nn = tf.keras.models.load_model('./models/nn_model.h5')
 
 models = {
     "Наивный Байес": gnb,
-    # "Градиентный бустинг": gbc,
+    "CatBoost": cbc,
     "Бэггинг": bc,
     "Стэкинг": sc,
     "XGBoost": xgbc,
