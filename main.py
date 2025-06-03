@@ -19,7 +19,7 @@ with open('./models/xgbc.pkl', 'rb') as f:
     xgbc = pickle.load(f)
 with open("./models/scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
-nn = tf.keras.models.load_model('./models/nn_model.keras')
+nn = tf.keras.models.load_model('./models/nn_model.h5')
 
 models = {
     "Наивный Байес": gnb,
