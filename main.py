@@ -23,7 +23,7 @@ nn = tf.keras.models.load_model('./models/nn_model.h5')
 
 models = {
     "Наивный Байес": gnb,
-    "Градиентный бустинг": gbc,
+    # "Градиентный бустинг": gbc,
     "Бэггинг": bc,
     "Стэкинг": sc,
     "XGBoost": xgbc,
